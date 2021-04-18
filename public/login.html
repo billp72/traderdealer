@@ -25,13 +25,57 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
     <link href="reset.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="styles.css" type="text/css" rel="stylesheet">
+    <link href="login.css" type="text/css" rel="stylesheet">
     <style media="screen">
  
     </style>
   </head>
   <body>
-    Login
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+          <div class="d-flex justify-content-center">
+            <div class="brand_logo_container">
+              <img src="images/coin.png" class="brand_logo" alt="Logo">
+            </div>
+          </div>
+          <div class="d-flex justify-content-center form_container">
+            <form>
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="" class="form-control input_user" value="" placeholder="username">
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-append">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+              </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customControlInline">
+                  <label class="custom-control-label" for="customControlInline">Remember me</label>
+                </div>
+              </div>
+                <div class="d-flex justify-content-center mt-3 login_container">
+             <button type="button" name="button" class="btn login_btn">Login</button>
+             </div>
+            </form>
+          </div>
+      
+          <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+              Don't have an account? <a href="#" class="ml-2" style="color:white;">Sign Up</a>
+            </div>
+            <div class="d-flex justify-content-center links">
+              <a href="#" style="color:white;">Forgot your password?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
