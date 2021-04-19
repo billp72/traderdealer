@@ -180,6 +180,32 @@ li input {
     height: 52px;
     cursor: pointer;
 }
+#productList {
+    flex: 0 1 33%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+li.list {
+    display: inline-block;
+    position: relative;
+    margin: 80px;
+    padding: 50px;
+    color:white;
+  }
+li.list:hover {
+    cursor: pointer;
+}
+.inner {
+    position:absolute;
+    background-color: #47748b;
+    top:0;
+    left:0;
+}
+
+.inner .pic {
+    padding:80px;
+    background-color: #716a36;
+}
 
 @media (max-width: 768px) {
     #sidebar {
