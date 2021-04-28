@@ -33,63 +33,93 @@
   <body>
     <header>
       <div class="row">
-        <div class="col-sm-2" style="font-size: x-large; margin-top:5px;">Virtual Coin Bourse</div>
-        <div class="col-sm-4">
+        <div class="col-sm-2" style="font-size: xx-large;">Virtual Coin Bourse</div>
+        <div class="col-sm-10">
           <input type="text" name="search_text" id="search_text" placeholder="Search"/>
           <input type="button" name="search_button" id="search_button">
-        </div>
-        <div class="col-sm-6">
-          <ul id="topnav" class="nav navbar-nav d-flex flex-row">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Accounts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
-            </li>
-        </ul>
         </div>
       </div>
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-         
+         <button type="button" id="sidebarCollapse" class="navbar-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
           <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <i class="fas fa-align-justify"></i>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav d-flex flex-row">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Dealers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Advanced Search</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Latest Listings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Rare</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Buy It Now!</a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Best Sellers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Customer Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Today's Deals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My Account</a>
+                </li>
             </ul>
         </div>
       </div>
   </nav>
-   <div class="wrapper">
-     <div class="banner">
-       <img src="images/banner.png" alt="banner" />
-     </div>
-   </div>
+    <div class="wrapper">
+      
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          Fliter by
+        </div>
+  
+        <ul class="list-unstyled components">
+            <li class="active">
+              <input type="checkbox">Mint
+           </li>
+            <li>
+              <input type="checkbox">Grade A
+            </li>
+            <li>
+              <input type="checkbox">Grade B
+            </li>
+            <li>
+              <input type="checkbox">Fine
+            </li>
+            <li>
+              <input type="checkbox">Minting Error
+              <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"></a>
+                  <li>
+                      <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 3</a>
+                  </li>
+              </ul>-->
+          </li>
+        </ul>
+     </nav>
+    <div class="content">
+        <ul id="product-list">
+        </ul>
+    </div>
+    </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      
+      $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+              $(this).toggleClass('active');
+          });
+      });
   </script>
   </body>
 </html>

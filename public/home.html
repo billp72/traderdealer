@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dealer</title>
+    
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/8.4.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/8.4.1/firebase-auth.js"></script>
+    <!--<script defer src="/__/firebase/8.4.1/firebase-database.js"></script>-->
+    <script defer src="/__/firebase/8.4.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.4.1/firebase-functions.js"></script>
+    <!--<script defer src="/__/firebase/8.4.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.4.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.4.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.4.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.4.1/firebase-performance.js"></script>-->
+    <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+    <link href="reset.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="col-sm-2" style="font-size: x-large; margin-top:5px;">Virtual Coin Bourse</div>
+        <div class="col-sm-4">
+          <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+          <input type="button" name="search_button" id="search_button">
+        </div>
+        <div class="col-sm-6">
+          <ul id="topnav" class="nav navbar-nav d-flex flex-row">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Cart</a>
+            </li>
+        </ul>
+        </div>
+      </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+         <button type="button" id="sidebarCollapse" class="navbar-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-align-justify"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav d-flex flex-row">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Dealers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Advanced Search</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Latest Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Rare</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Buy It Now!</a>
+            </li>
+            </ul>
+        </div>
+      </div>
+  </nav>
+    <div class="wrapper">
+      
+      <nav id="sidebar">
+        <div class="sidebar-header">
+          Fliter by
+        </div>
+  
+        <ul class="list-unstyled components">
+            <li class="active">
+                <input type="checkbox"> All
+            </li>
+            <li>
+              <input type="checkbox">Mint
+           </li>
+            <li>
+              <input type="checkbox">Grade A
+            </li>
+            <li>
+              <input type="checkbox">Grade B
+            </li>
+            <li>
+              <input type="checkbox">Fine
+            </li>
+            <li>
+              <input type="checkbox">Minting Error
+              <!--<ul class="collapse list-unstyled" id="pageSubmenu">
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"></a>
+                  <li>
+                      <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 3</a>
+                  </li>
+              </ul>-->
+          </li>
+          <li class="active">
+            <input type="checkbox"> Item Type
+         </li>
+         
+         <li>
+            <input type="checkbox"> Buy It Now Only
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Coin Categories
+         </li>
+         <li class="active">
+            <input type="checkbox"> U.S. Coins
+         </li>
+<!-- ************* New Sub-category -->
+         <li class="active"> 
+           <input type="checkbox"> All U.S. Coins
+         </li>
+<!-- ************* New Sub-category elements -->
+         <li>
+            <input type="checkbox"> New Inventory
+         </li>
+         <li>
+            <input type="checkbox"> Pre-Federal Issues
+         </li>
+         <li>
+            <input type="checkbox"> Half Cents
+         </li>
+         <li>
+            <input type="checkbox"> Large Cents
+         </li>
+         <li>
+            <input type="checkbox"> Small Cents
+         </li>
+         <li>
+            <input type="checkbox"> 2-Cent Pieces
+         </li>
+         <li>
+            <input type="checkbox"> 3-Cent Pieces
+         </li>
+         <li>
+            <input type="checkbox"> Nickels
+         </li>
+         <li>
+            <input type="checkbox"> Half Dimes
+         </li>
+         <li>
+            <input type="checkbox"> Dimes
+         </li>
+         <li>
+            <input type="checkbox"> 20-Cent Pieces
+         </li>
+         <li>
+            <input type="checkbox"> Quarters
+         </li>
+         <li>
+            <input type="checkbox"> Half Dollars
+         </li>
+         <li>
+            <input type="checkbox"> Dollars
+         </li>
+         <li>
+            <input type="checkbox"> Gold Coinage
+         </li>
+         <li>
+            <input type="checkbox"> Territorial, CSA
+            <!--<input type="checkbox"> Territorial, CSA & Shipwreck-->
+         </li>
+         <li>
+            <input type="checkbox"> Calif Fractional Gold
+            <!--<input type="checkbox"> California Fractional Gold-->
+         </li>
+         <li>
+            <input type="checkbox"> Commemoratives
+         </li>
+         <li>
+            <input type="checkbox"> Proof & Mint Sets
+         </li>
+         <li>
+            <input type="checkbox"> American Eagles
+         </li>
+         <li>
+            <input type="checkbox"> Bullion
+         </li>
+         <li>
+            <input type="checkbox"> Coin Rolls
+         </li>
+         <li>
+            <input type="checkbox"> U.S. Philippines
+         </li>
+         <li>
+            <input type="checkbox"> Pattern Coinage
+         </li>
+         <li>
+            <input type="checkbox"> Medals & Tokens
+         </li>
+         <li>
+            <input type="checkbox"> Miscellaneous U.S.
+         </li>
+
+         <li class="active">
+            <input type="checkbox"> Ancient Coins
+         </li>
+<!-- ************* New Sub-category -->
+         <li class="active"> 
+           <input type="checkbox"> All Ancient Coins
+         </li>
+<!-- ************* New Sub-category elements -->
+         <li>
+            <input type="checkbox"> New Inventory
+         </li>
+         <li>
+            <input type="checkbox"> Ancient Greek
+         </li>
+         <li>
+            <input type="checkbox"> Ancient Roman
+         </li>
+         <li>
+            <input type="checkbox"> Byzantine Empire
+         </li>
+
+         <li class="active">
+            <input type="checkbox"> World Coins
+         </li>
+<!-- ************* New Sub-category -->
+         <li class="active"> 
+           <input type="checkbox"> All World Coins
+         </li>
+<!-- ************* New Sub-category elements -->
+         <li>
+            <input type="checkbox"> New Inventory
+         </li>
+         <li>
+            <input type="checkbox"> Africa
+         </li>
+         <li>
+            <input type="checkbox"> Asia
+         </li>
+         <li>
+            <input type="checkbox"> Australia & Oceania
+         </li>
+         <li>
+            <input type="checkbox"> Europe
+         </li>
+         <li>
+            <input type="checkbox"> North & Central America
+         </li>
+         <li>
+            <input type="checkbox"> South America
+         </li>
+         <li>
+            <input type="checkbox"> Canada & Provinces
+         </li>
+         <li>
+            <input type="checkbox"> China
+         </li>
+         <li>
+            <input type="checkbox"> France
+         </li>
+         <li>
+            <input type="checkbox"> General World Coinage
+         </li>
+         <li>
+            <input type="checkbox"> Germany
+         </li>
+         <li>
+            <input type="checkbox"> Great Britain
+         </li>
+         <li>
+            <input type="checkbox"> Italy
+         </li>
+         <li>
+            <input type="checkbox"> Mexico
+         </li>
+         <li>
+            <input type="checkbox"> Miscellaneous Bullion
+         </li>
+
+<!-- ************* New Sub-category -->
+         <li class="active">
+            <input type="checkbox"> US Currency
+         </li>
+<!-- ************* New Sub-category elements -->
+         <li class="active"> 
+           <input type="checkbox"> All US Currency
+         </li>
+         <li>
+            <input type="checkbox"> New Inventory
+         </li>
+         <li>
+            <input type="checkbox"> Colonial & Continental
+            <!--<input type="checkbox"> Colonial & Continental Currency-->
+         </li>
+         <li>
+            <input type="checkbox"> Large Size Notes
+         </li>
+         <li>
+            <input type="checkbox"> Small Size Notes
+         </li>
+         <li>
+            <input type="checkbox"> Large Size Bank Notes
+            <!--<input type="checkbox"> Large Size National Bank Notes-->
+         </li>
+         <li>
+            <input type="checkbox"> Small Size Bank Notes
+            <!--<input type="checkbox"> Small Size National Bank Notes-->
+         </li>
+         <li>
+            <input type="checkbox"> Fractional Currency
+         </li>
+         <li>
+            <input type="checkbox"> Military Payment
+            <!--<input type="checkbox"> Military Payment Certificates-->
+         </li>
+         <li>
+            <input type="checkbox"> Confederate & Southern
+            <!--<input type="checkbox"> Confederate & Southern States-->
+         </li>
+         <li>
+            <input type="checkbox"> Obsolete Currency
+         </li>
+         <li>
+            <input type="checkbox"> Encased Postage
+         </li>
+         <li>
+            <input type="checkbox"> Miscellaneous Currency
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Price Range
+         </li>
+             <input type="text" class="price-range form-control" id="amount" value="0">
+             <label for="amount2">To</label>
+             <input type="text" class="price-range form-control" id="amount2" value="100000000">
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Grade
+         </li>
+             <input type="text" class="grade form-control" id="amount" value="0">
+             <label for="amount2">To</label>
+             <input type="text" class="grade form-control" id="amount2" value="70">
+                          
+         <li>
+            <input type="checkbox"> Plus Only
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Grading Service
+         </li>
+         <li>
+            <input type="checkbox"> CAC
+         </li>
+         <li>
+            <input type="checkbox"> PCGS
+         </li>
+         <li>
+            <input type="checkbox"> NGC
+         </li>
+         <li>
+            <input type="checkbox"> GSA
+         </li>
+         <li>
+            <input type="checkbox"> ANACS
+         </li>
+         <li>
+            <input type="checkbox"> OGH/OH
+         </li>
+         <li>
+            <input type="checkbox"> OTHER
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Eye Appeal
+         </li>
+         <li>
+            <input type="checkbox"> 5 stars
+         </li>
+         <li>
+            <input type="checkbox"> 4 stars
+         </li>
+         <li>
+            <input type="checkbox"> 3 stars
+         </li>
+         <li>
+            <input type="checkbox"> 2 stars
+         </li>
+         <li>
+            <input type="checkbox"> 1 star
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Mint Mark
+         </li>
+         <li>
+            <input type="checkbox"> Charlotte
+         </li>
+         <li>
+            <input type="checkbox"> Carson City
+         </li>
+         <li>
+            <input type="checkbox"> Dahlonega
+         </li>
+         <li>
+            <input type="checkbox"> Denver
+         </li>
+         <li>
+            <input type="checkbox"> New Orleans
+         </li>
+         <li>
+            <input type="checkbox"> Philadelphia
+         </li>
+         <li>
+            <input type="checkbox"> San Francisco
+         </li>
+         <li>
+            <input type="checkbox"> West Point
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> Reserves
+         </li>
+         <li>
+            <input type="checkbox"> All
+         </li>
+         <li>
+            <input type="checkbox"> Reserve Met
+         </li>
+         <li>
+            <input type="checkbox"> Reserve Not Met
+         </li>
+         <li>
+            <input type="checkbox"> No Reserve
+         </li>
+
+
+<!-- ************* New Category  New Category  -->
+         <li class="active">
+            <input type="checkbox"> NuTilt
+         </li>
+         <li>
+            <input type="checkbox"> NuTilt Image
+         </li>
+         <li>
+            <input type="checkbox"> All
+         </li>
+        </ul>
+     </nav>
+    <div class="content">
+        <ul id="product-list">
+        </ul>
+    </div>
+    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+              $(this).toggleClass('active');
+          });
+      });
+  </script>
+  </body>
+</html>
