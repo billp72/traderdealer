@@ -35,7 +35,9 @@ function App() {
       this.$signOutButton.on('click', this.signOut.bind(this));
       this.$createMessageButton.on('click', this.createMessage.bind(this));
       this.$messageListButtons.on('click', this.listMessages.bind(this));*/
+      this.$login = $('#login');
       this.$productList = $('#product-list');
+      this.$login.click(this.login.bind(this));
       this.$productList.on('click','li.list', this.gotoItem.bind(this));
       firebase.auth().onAuthStateChanged(this.onAuthStateChanged.bind(this));
     }.bind(this));
@@ -74,6 +76,10 @@ function App() {
     if(event.target.hasAttribute('data')){
       alert(event.target.getAttribute('data'));
     }
+  }
+
+  App.prototype.login = function(event){
+    window.location.href = 'http://localhost:5000/home.html';
   }
 
   window.app = new App();
