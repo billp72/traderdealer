@@ -79,7 +79,8 @@ function App() {
   }
 
   App.prototype.login = function(event){
-    window.location.href = 'http://localhost:5000/home.html';
+    //window.location.href = 'http://localhost:5000/home.html';
+    window.location.href = 'https://dealerprototype-a2fdd.web.app/home.html'
   }
 
   window.app = new App();
